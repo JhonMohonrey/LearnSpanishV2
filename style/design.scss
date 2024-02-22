@@ -52,13 +52,18 @@ header {
     }
 
     .left_menu {
+        // background-color: pink;
         flex: 1;
         display: flex;
         align-items: center;
         justify-content: right;
+        // background-color: green;
         padding-right: 10px;
 
         div {
+            // background-color: lightblue;
+            // flex: 1;
+            // background-color: pink;
             height: 100%;
             margin-left: 15px;
             display: flex;
@@ -85,7 +90,10 @@ header {
 }
 
 .mk_container {
+    // background-color: rgb(255, 255, 255);
     width: 90%;
+    // border-radius: 5px;
+    // box-shadow: 3px 3px 3.5px rgba(0, 0, 0, 0.4);
 }
 
 .rm_container {
@@ -137,6 +145,7 @@ header {
         }
 
         button {
+            // width: 100px;
             font-size: 20px;
             padding: 10px 30px;
             margin-left: 10px;
@@ -160,6 +169,7 @@ header {
     }
 
     .prev_task {
+        // border: 1px solid black;
         margin-top: 25px;
         width: 100%;
         box-sizing: border-box;
@@ -186,6 +196,7 @@ header {
                 border: 1px solid black;
                 text-align: left;
                 padding: 10px;
+                // cursor: pointer;
                 word-wrap: break-word;
             }
             
@@ -194,6 +205,10 @@ header {
                 border-bottom: 1px solid black;
                 text-align: center;
                 padding: 10px 0px;
+                // display: flex;
+                // align-items: center;
+                // justify-content: center;
+                // gap: 10px;
 
                 button {
                     padding: 5px 25px;
@@ -297,6 +312,7 @@ header {
     }
 
     .top_info {
+        // font-weight: bold;
         font-size: 20px;
     }
 
@@ -371,6 +387,7 @@ header {
         }
 
         .hint_div {
+            // display: flex;
             display: flex;
             align-items: center;
             justify-content: right;
@@ -406,6 +423,7 @@ header {
             border-radius: 10px;
             border: none;
             cursor: pointer;
+            // border: 1px solid black;
 
             &:active {
                 opacity: .8;
@@ -425,6 +443,7 @@ header {
             border-radius: 5px;
             border: 1px solid black;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            // padding: 10px;
             font-size: 20px;
         }
 
@@ -481,22 +500,26 @@ header {
     }
 
     #current_position {
+        // border: 1px solid black;
         display: flex;
         margin-top: 5px;
         align-items: center;
         justify-content: center;
+        // gap: 5px;
         
         div {
             box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
             border: 1px solid rgb(0, 0, 0);
             flex: 1;
             font-family: arial;
+            // font-size: 12px;
             text-align: center;
             cursor: pointer;
             font-weight: bold;
             background-color: #fffaff;
             color: rgb(0, 0, 0);
             padding: 5px;
+            // border-radius: 10px;
             font-size: 15px;
             margin-top: 10px;
         }
@@ -622,3 +645,6 @@ header {
     }
     
 }
+
+//===================================================================>
+

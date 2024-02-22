@@ -16,97 +16,66 @@ if (Array.isArray(saveItem)) {
                 activeEdit: false,
                 currentCollection: 1,
                 collection_control: 1,
-                Display: 0,
-                switch: "english",
-                disResult: "No answer"
+                //Try to create new Collection and that should change\
+                //and current collection data should remain
             },
         ],
         [
             {
                 key: "Task",
-                english: "Good Morning",
-                spanish: "Buenos dias",
-                remark: "NA",
-            },
-            {
-                key: "Task",
-                english: "Excuse me",
-                spanish: "Disculpe",
-                remark: "NA",
-            },
-            {
-                key: "Task",
-                english: "How are you?",
-                spanish: "Como esta usted",
-                remark: "NA",
-            },
-            {
-                key: "Task",
-                english: "What is your name?",
-                spanish: "Como se llama",
-                remark: "NA",
-            },
-            {
-                key: "Task",
-                english: "Where are you from?",
-                spanish: "De donde viene",
-                remark: "NA",
-            },
-            {
-                key: "Task",
-                english: "How much does it cost?",
-                spanish: "Cuanto cuesta eso?",
-                remark: "NA",
-            },
-            {
-                key: "Task",
-                english: "Do you understand?",
-                spanish: "Entiede",
-                remark: "NA",
-            },
-            {
-                key: "Task",
-                english: "Can you help me?",
-                spanish: "Puede ayudarme",
-                remark: "NA",
-            },
-            {
-                key: "Task",
-                english: "Good bye",
-                spanish: "Adios",
-                remark: "NA",
-            },
-            {
-                key: "Task",
                 english: "Hi",
                 spanish: "Hola",
-                remark: "NA",
+            },
+            {
+                key: "Task",
+                english: "Thank you",
+                spanish: "Gracias",
+            },
+            {
+                key: "Task",
+                english: "Thank you",
+                spanish: "Gracias",
+            },
+            {
+                key: "Task",
+                english: "Thank you",
+                spanish: "Gracias",
             },
         ],
+        []
+        // [
+        //     {
+        //         key: "Task",
+        //         english: "Collection 2",
+        //         spanish: "Collection 2",
+        //     },
+        //     {
+        //         key: "Task",
+        //         english: "Collection 2",
+        //         spanish: "Collection 2",
+        //     },
+        //     {
+        //         key: "Task",
+        //         english: "Collection 2",
+        //         spanish: "Collection 2",
+        //     },
+        //     {
+        //         key: "Task",
+        //         english: "Collection 2",
+        //         spanish: "Collection 2",
+        //     },
+        //     {
+        //         key: "Task",
+        //         english: "Collection 2",
+        //         spanish: "Collection 2",
+        //     },
+        // ]
     ]
 }
 
-const reset = () => {
-    let count = listData[listData[0][0].collection_control].length;
-    count -=1
-    let x = -1
-
-    while (x < count) {
-        x += 1;
-        listData[listData[0][0].collection_control][x].remark = "NA"
-        saveData();
-    }
-}
-
-
-if (listData.length === 1) {
-    listData.push([{
-        key: "Task",
-        english: "Empty",
-        spanish: "Empty",
-    }])
-    saveData();
-}
+// listData[0][0].currentCollection = 0
+// listData[0][0].collection_control = 0
+// saveData();
 
 saveData();
 
@@ -125,8 +94,8 @@ const menu_function = () => {
                 listData[0][0].ctn_id = `ctn${Get_menu_id.id[0]}`
                 listData[0][0].activeEdit = false
                 location.reload();
-                saveData();
                 window.scrollTo(0, window.screenX)
+                saveData();
             }
         });
     });
@@ -154,26 +123,15 @@ const addTask = () => {
                     key: "Task",
                     english: `${addEnglish.value}`,
                     spanish: `${addSpanish.value}`,
-                    remark: "NA",
                 });
                 saveData();
                 
                 addEnglish.value = "";
                 addSpanish.value = "";
-                location.reload();
-                
-                //=== "Delete NoTask" ===>
-                if (listData[1][0].english == "Empty") {
-                    listData[1].splice(0, 1)
-                    saveData();
-                }
-                //=== "Delete NoTask" ===>
+                location.reload();  
             }
         }
     });
-
-    // console.log(listData[1][0].english == "NoTask")
-    // alert("stop")
 }
 addTask();
 // add Task ===>
@@ -241,36 +199,14 @@ const editTask_Function = () => {
             const EnglishEdit = document.createElement("input");
             EnglishEdit.id = "EnglishEdit";
             
-            // console.log("working")
-            // console.log(`${Edit_Btn.id[0]}EditBtn`)
-
-            // let firstNum = Edit_Btn.id[0]
-            // let numCombine = firstNum + secondNum
-
-            let secondNum = Edit_Btn.id[1]
-            let firstNum = Edit_Btn.id[0]
-            let convertFS = firstNum + secondNum
-            let ECM = parseInt(convertFS)
-            let ECM2 = parseInt(convertFS)
-
-            
-            if (Edit_Btn.id === `${ECM2}EditBtn` && EditBtnContent && listData[0][0].activeEdit === false) {
-                
-
+            if (Edit_Btn.id === `${Edit_Btn.id[0]}EditBtn` && EditBtnContent && listData[0][0].activeEdit === false) {
+                let ECM = Edit_Btn.id[0]
                 let ValData = listData[listData[0][0].collection_control][ECM -=1];
-                
-                // console.log(ECM2)
-                
-                const spanishData = document.getElementById(`${ECM2}Spanish`);
 
-                // console.log(Edit_Btn.id[0])
-                // console.log(Edit_Btn.id)
-                
-                // console.log(ECM)
-                // console.log(Edit_Btn.id[0])
+                const spanishData = document.getElementById(`${Edit_Btn.id[0]}Spanish`);
 
                 //English Data
-                const EnglishData = document.getElementById(`${ECM2}English`)
+                const EnglishData = document.getElementById(`${Edit_Btn.id[0]}English`)
                 EnglishEdit.value = ValData.english
                 EnglishData.textContent = "";
                 EnglishData.append(EnglishEdit);
@@ -280,16 +216,14 @@ const editTask_Function = () => {
                 spanishData.textContent = "";
                 spanishData.append(SpanishEdit);
 
-                // console.log(Edit_Btn.id);
+                console.log(Edit_Btn.id);
                 Edit_Btn.textContent = "Save";
                 listData[0][0].activeEdit = true;
                 saveData();
-            } 
-
+            }
             let x = listData[0][0].collection_control;
-            let editBtnVar = ECM2
-
-            if (Edit_Btn.id === `${ECM2}EditBtn` && SaveEditBtnContent) {
+            let editBtnVar = Edit_Btn.id[0];
+            if (Edit_Btn.id === `${Edit_Btn.id[0]}EditBtn` && SaveEditBtnContent) {
                 const EnglishEdit = document.getElementById("EnglishEdit");
                 const spanishEdit = document.getElementById("spanishEdit");
 
@@ -341,16 +275,16 @@ RemoveTaskBtn();
 // Collection ===>
 const collection = () => {
     let num = listData[0][0].currentCollection;
-    if (listData[listData[0][0].currentCollection].length > 15) {
+    if (listData[listData[0][0].currentCollection].length > 5) {
         listData[0][0].currentCollection += 1;
         location.reload()
         listData[0][0].collection_control = listData[0][0].currentCollection
         // alert("hey")
         saveData();
     }
-    if (listData[num].length > 15) {
-        let english = listData[num][15].english
-        let spanish = listData[num][15].spanish
+    if (listData[num].length > 5) {
+        let english = listData[num][5].english
+        let spanish = listData[num][5].spanish
         listData.push([
             {
                 key: "Task",
@@ -358,8 +292,7 @@ const collection = () => {
                 spanish: `${spanish}`,
             },
         ])
-        listData[num].splice(15, 1)
-        reset()
+        listData[num].splice(5, 1)
         saveData();
     }
 }
@@ -370,7 +303,8 @@ collection()
 const function_control = () => {
     const Control_table = document.getElementById("table_collection_control");
     let num = 0
-   
+    console.log()
+
     listData.forEach(collections => {
         try {
             if (collections[0].key === "Task") {
@@ -411,10 +345,8 @@ const function_control = () => {
                 getInput.addEventListener("change", () => {
                     let collection_active = parseInt(getInput.id[0])
                     listData[0][0].collection_control = collection_active;
-                    reset()
                     location.reload()
                     saveData();
-                    // reset()
                 })
                 
                 if (parseInt(getInput.id[0]) === listData[0][0].collection_control) {
@@ -440,189 +372,5 @@ const function_control = () => {
 function_control();
 // == (Collection List) ==>
 
-//========================================================================>
+// console.log(listData)
 
-const practiceFunction = () => {
-    const getShuffleBtn = document.getElementById("shuffle_btn");
-    const Display = document.getElementById("rand_question");
-    const skip_btn = document.getElementById("skip_btn");
-    const Switch_btn = document.getElementById("Switch_btn");
-    const hint_btn = document.getElementById("hint_btn");
-    const current_position = document.getElementById("current_position");
-    let num = listData[0][0].collection_control
-    let DisplayScreen = listData[0][0].Display
-    
-    const shuffleData = (array) => {
-        return array.sort(() => Math.random() - 0.5);
-    }
-    
-    getShuffleBtn.addEventListener("click", () => {
-        shuffleData(listData[num])
-        listData[0][0].Display = 0
-        location.reload();
-        saveData();
-    })
-
-    skip_btn.addEventListener("click", () => {
-        let length = parseInt(listData[num].length);
-        listData[0][0].disResult = "No answer"
-        
-        if (listData[0][0].Display < length) {
-            listData[0][0].Display += 1
-            location.reload();
-            saveData();
-            console.log(listData[0][0].Display)
-        } else {
-            listData[0][0].Display = 0
-            location.reload()
-            saveData();
-        }
-    });
-    
-    let Display_q = listData[0][0].switch
-    Switch_btn.addEventListener("click", () => {
-        location.reload()
-        if (listData[0][0].switch === "english") {
-            listData[0][0].switch = "spanish"
-            shuffleData(listData[num])
-            saveData();
-        } else {
-            listData[0][0].switch = "english"
-            shuffleData(listData[num])
-            saveData();
-        }
-    });
-    
-    try {
-        if (Display_q === "english") {
-            Display.textContent = `${listData[num][DisplayScreen].english}`
-        } else {
-            Display.textContent = `${listData[num][DisplayScreen].spanish}`
-        }
-    } catch {
-        listData[0][0].Display = 0
-        saveData();
-        location.reload()
-        
-        if (Display_q === "english") {
-            Display.textContent = `${listData[num][DisplayScreen].english}`
-        } else {
-            Display.textContent = `${listData[num][DisplayScreen].spanish}`
-        }
-    }
-
-    hint_btn.addEventListener("click", () => {
-        if (Display_q === "english") {
-            let x = listData[num][DisplayScreen].spanish
-            document.getElementById("hint_id").textContent = `Hint:  "${x[0]}"`
-            console.log(x[0])
-        } else {
-            let x = listData[num][DisplayScreen].english
-            document.getElementById("hint_id").textContent = `Hint:  "${x[0]}"`
-            console.log(x[0])
-        }
-
-    });
-    
-    let x = 15;
-    let y = 0
-    let id = listData[0][0].Display
-    console.log(id += 1)
-
-    while (y < x) {
-        y += 1;
-        const createDiv = document.createElement("div");
-        createDiv.id = `${y}divPosition`
-        createDiv.textContent = y;
-        current_position.append(createDiv);
-    }
-
-    const colorDiv = document.getElementById(`${id}divPosition`);
-    colorDiv.classList = "green";
-
-    const submit_btn = document.getElementById("submit_btn");
-    const userAnswer = document.getElementById("userAnswer")
-    const display_result = document.getElementById("display_result");
-
-    let displayR = listData[0][0].disResult;
-    let remark = listData[num][DisplayScreen].remark
-    display_result.textContent = `${displayR}`;
-
-    //=====(Div) ==>
-    let dataX = listData[num].length
-    let dataY = 0
-    let datYY = -1
-
-    while (dataY < dataX) {
-        dataY += 1
-        datYY += 1
-        const div_Display = document.getElementById(`${dataY}divPosition`);
-        console.log()
-        let currentPosition = div_Display.classList.value !== "green"
-        if (listData[num][datYY].remark === "Correct" && currentPosition) {
-            div_Display.style = "background-color: #3e92cc; color: black;"
-        } else if (listData[num][datYY].remark === "Wrong" && currentPosition) {
-            div_Display.style = "background-color: #ef233c; "
-        }
-    }
-    //=====(Div) ==>
-
-    //====(Reset Btn) ===>
-    const resetBtn = document.getElementById("reset")
-    resetBtn.addEventListener("click", () => {
-        reset();
-        listData[0][0].Display = 0
-        location.reload()
-        saveData();
-    })
-    //====(Reset Btn) ===>
-
-    if (remark === "NA") {
-        display_result.textContent = `No answer`;
-    } else if (remark === "Correct") {
-        display_result.textContent = `Correct`;
-        display_result.style = "color: rgb(0, 133, 7);"
-    } else {
-        display_result.textContent = `Wrong`;
-        display_result.style = "color: #ef233c;"
-    }
-
-    submit_btn.addEventListener("click", () => {
-        let checkAnswerData = userAnswer.value
-        checkAnswerData.toLowerCase()
-
-        if (userAnswer.value !== "") {
-            if (Display_q === "english") {
-                let x = listData[num][DisplayScreen].spanish
-                location.reload()
-                
-                if (checkAnswerData.toLowerCase() === x.toLowerCase()) {
-                    console.log("Correct")
-                    listData[0][0].disResult = "Correct"
-                    listData[num][DisplayScreen].remark = "Correct"
-                } else {
-                    listData[0][0].disResult = "Wrong"
-                    listData[num][DisplayScreen].remark = "Wrong"
-                }
-            } else {
-                location.reload()
-                let x = listData[num][DisplayScreen].english
-                
-                if (checkAnswerData.toLowerCase() === x.toLowerCase()) {
-                    console.log("Correct")
-                    listData[0][0].disResult = "Correct"
-                    listData[num][DisplayScreen].remark = "Correct"
-                } else {
-                    listData[0][0].disResult = "Wrong"
-                    listData[num][DisplayScreen].remark = "Wrong"
-                }
-            }
-            saveData();
-            userAnswer.value = ""
-        } else {
-            userAnswer.value = ""
-        }
-    })
-}
-
-practiceFunction()

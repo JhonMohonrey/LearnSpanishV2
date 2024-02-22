@@ -24,81 +24,84 @@ if (Array.isArray(saveItem)) {
         [
             {
                 key: "Task",
-                english: "Good Morning",
-                spanish: "Buenos dias",
-                remark: "NA",
+                english: "1a",
+                spanish: "1b",
             },
             {
                 key: "Task",
-                english: "Excuse me",
-                spanish: "Disculpe",
-                remark: "NA",
+                english: "2a",
+                spanish: "2b",
             },
             {
                 key: "Task",
-                english: "How are you?",
-                spanish: "Como esta usted",
-                remark: "NA",
+                english: "3a",
+                spanish: "3b",
             },
             {
                 key: "Task",
-                english: "What is your name?",
-                spanish: "Como se llama",
-                remark: "NA",
+                english: "4a",
+                spanish: "4b",
             },
             {
                 key: "Task",
-                english: "Where are you from?",
-                spanish: "De donde viene",
-                remark: "NA",
+                english: "5a",
+                spanish: "5b",
             },
             {
                 key: "Task",
-                english: "How much does it cost?",
-                spanish: "Cuanto cuesta eso?",
-                remark: "NA",
+                english: "6a",
+                spanish: "6b",
             },
             {
                 key: "Task",
-                english: "Do you understand?",
-                spanish: "Entiede",
-                remark: "NA",
+                english: "7a",
+                spanish: "7b",
             },
             {
                 key: "Task",
-                english: "Can you help me?",
-                spanish: "Puede ayudarme",
-                remark: "NA",
+                english: "8a",
+                spanish: "8b",
             },
             {
                 key: "Task",
-                english: "Good bye",
-                spanish: "Adios",
-                remark: "NA",
+                english: "9a",
+                spanish: "9b",
             },
             {
                 key: "Task",
-                english: "Hi",
-                spanish: "Hola",
-                remark: "NA",
+                english: "10a",
+                spanish: "10b",
+            },
+            {
+                key: "Task",
+                english: "11a",
+                spanish: "11b",
+            },
+            {
+                key: "Task",
+                english: "12a",
+                spanish: "12b",
+            },
+            {
+                key: "Task",
+                english: "13a",
+                spanish: "13b",
+            },
+            {
+                key: "Task",
+                english: "14a",
+                spanish: "14b",
+            },
+            {
+                key: "Task",
+                english: "15a",
+                spanish: "15b",
             },
         ],
     ]
 }
 
-const reset = () => {
-    let count = listData[listData[0][0].collection_control].length;
-    count -=1
-    let x = -1
-
-    while (x < count) {
-        x += 1;
-        listData[listData[0][0].collection_control][x].remark = "NA"
-        saveData();
-    }
-}
-
-
+// console.log(listData.length === 1)
 if (listData.length === 1) {
     listData.push([{
         key: "Task",
@@ -125,8 +128,8 @@ const menu_function = () => {
                 listData[0][0].ctn_id = `ctn${Get_menu_id.id[0]}`
                 listData[0][0].activeEdit = false
                 location.reload();
-                saveData();
                 window.scrollTo(0, window.screenX)
+                saveData();
             }
         });
     });
@@ -154,7 +157,6 @@ const addTask = () => {
                     key: "Task",
                     english: `${addEnglish.value}`,
                     spanish: `${addSpanish.value}`,
-                    remark: "NA",
                 });
                 saveData();
                 
@@ -359,7 +361,6 @@ const collection = () => {
             },
         ])
         listData[num].splice(15, 1)
-        reset()
         saveData();
     }
 }
@@ -370,7 +371,8 @@ collection()
 const function_control = () => {
     const Control_table = document.getElementById("table_collection_control");
     let num = 0
-   
+    console.log()
+
     listData.forEach(collections => {
         try {
             if (collections[0].key === "Task") {
@@ -411,10 +413,8 @@ const function_control = () => {
                 getInput.addEventListener("change", () => {
                     let collection_active = parseInt(getInput.id[0])
                     listData[0][0].collection_control = collection_active;
-                    reset()
                     location.reload()
                     saveData();
-                    // reset()
                 })
                 
                 if (parseInt(getInput.id[0]) === listData[0][0].collection_control) {
@@ -545,47 +545,7 @@ const practiceFunction = () => {
     const display_result = document.getElementById("display_result");
 
     let displayR = listData[0][0].disResult;
-    let remark = listData[num][DisplayScreen].remark
-    display_result.textContent = `${displayR}`;
-
-    //=====(Div) ==>
-    let dataX = listData[num].length
-    let dataY = 0
-    let datYY = -1
-
-    while (dataY < dataX) {
-        dataY += 1
-        datYY += 1
-        const div_Display = document.getElementById(`${dataY}divPosition`);
-        console.log()
-        let currentPosition = div_Display.classList.value !== "green"
-        if (listData[num][datYY].remark === "Correct" && currentPosition) {
-            div_Display.style = "background-color: #3e92cc; color: black;"
-        } else if (listData[num][datYY].remark === "Wrong" && currentPosition) {
-            div_Display.style = "background-color: #ef233c; "
-        }
-    }
-    //=====(Div) ==>
-
-    //====(Reset Btn) ===>
-    const resetBtn = document.getElementById("reset")
-    resetBtn.addEventListener("click", () => {
-        reset();
-        listData[0][0].Display = 0
-        location.reload()
-        saveData();
-    })
-    //====(Reset Btn) ===>
-
-    if (remark === "NA") {
-        display_result.textContent = `No answer`;
-    } else if (remark === "Correct") {
-        display_result.textContent = `Correct`;
-        display_result.style = "color: rgb(0, 133, 7);"
-    } else {
-        display_result.textContent = `Wrong`;
-        display_result.style = "color: #ef233c;"
-    }
+    display_result.textContent = `Result: "${displayR}"`;
 
     submit_btn.addEventListener("click", () => {
         let checkAnswerData = userAnswer.value
@@ -599,10 +559,8 @@ const practiceFunction = () => {
                 if (checkAnswerData.toLowerCase() === x.toLowerCase()) {
                     console.log("Correct")
                     listData[0][0].disResult = "Correct"
-                    listData[num][DisplayScreen].remark = "Correct"
                 } else {
                     listData[0][0].disResult = "Wrong"
-                    listData[num][DisplayScreen].remark = "Wrong"
                 }
             } else {
                 location.reload()
@@ -611,10 +569,8 @@ const practiceFunction = () => {
                 if (checkAnswerData.toLowerCase() === x.toLowerCase()) {
                     console.log("Correct")
                     listData[0][0].disResult = "Correct"
-                    listData[num][DisplayScreen].remark = "Correct"
                 } else {
                     listData[0][0].disResult = "Wrong"
-                    listData[num][DisplayScreen].remark = "Wrong"
                 }
             }
             saveData();
